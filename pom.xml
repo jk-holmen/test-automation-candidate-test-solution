@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.github.jk_holmen</groupId>
-  <artifactId>test_automation_candidate_test</artifactId>
+  <artifactId>test-automation-candidate-test-solution</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>test_automation_candidate_test</name>
-  <url>https://github.com/jk-holmen/test_automation_candidate_test_solution</url>
+  <name>test-automation-candidate-test-solution</name>
+  <url>https://github.com/jk-holmen/test-automation-candidate-test-solution</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
