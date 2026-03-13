@@ -43,7 +43,7 @@ public class ConfigurationManager {
         return get("base.url");
     }
 
-    public String getDatasetId() {
-        return get("dataset.id");
+    public String getDatasetId(String datasetName) {
+        return get("dataset.id." + datasetName);
     }
 }
