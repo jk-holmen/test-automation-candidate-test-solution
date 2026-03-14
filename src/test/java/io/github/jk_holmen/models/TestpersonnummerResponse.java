@@ -2,6 +2,16 @@ package io.github.jk_holmen.models;
 
 import java.util.List;
 
+/**
+ * Response model for the Testpersonnummer dataset API.
+ *
+ * <p>
+ * Deserialized from JSON via
+ * {@link io.github.jk_holmen.clients.ApiResponse#as(Class)}. Fields are
+ * populated by Gson and match the API response structure.
+ *
+ * @author jk-holmen
+ */
 public class TestpersonnummerResponse {
 
     private int resultCount;
