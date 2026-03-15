@@ -5,6 +5,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.time.Duration;
+
 import io.github.jk_holmen.config.ConfigurationManager;
 
 /**
@@ -21,12 +23,15 @@ public class BaseClient {
     protected final HttpClient client;
     protected final String BASE_URL;
 
+    private final Long CONNECTION_TIMEOUT = ConfigurationManager.getInstance().getConnectionTimeout();
+    private final Long RESPONSE_TIMEOUT = ConfigurationManager.getInstance().getResponseTimeout();
+
     /**
      * Creates a client with a default {@link HttpClient} and the base URL
      * from {@link ConfigurationManager#getBaseUrl()}.
      */
     public BaseClient() {
-        client = HttpClient.newBuilder().build();
+        client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(CONNECTION_TIMEOUT)).build();
         BASE_URL = ConfigurationManager.getInstance().getBaseUrl();
     }
 
@@ -44,7 +49,8 @@ public class BaseClient {
      * @throws InterruptedException
      */
     public ApiResponse get(String path) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(BASE_URL + path)).build();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(BASE_URL + path))
+                .timeout(Duration.ofSeconds(RESPONSE_TIMEOUT)).build();
 
         ApiResponse response = new ApiResponse(client.send(request, BodyHandlers.ofString()));
         return response;

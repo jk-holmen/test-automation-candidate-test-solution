@@ -80,7 +80,8 @@ public class ConfigurationManager {
     }
 
     /**
-     * Returns the dataset ID for the given dataset name ({@code dataset.id.<name>})
+     * Returns the dataset ID for the given dataset name
+     * ({@code dataset.id.<name>}).
      *
      * @param datasetName the dataset name from the property
      * @return the dataset ID
@@ -88,5 +89,26 @@ public class ConfigurationManager {
      */
     public String getDatasetId(String datasetName) {
         return get("dataset.id." + datasetName);
+    }
+
+    /**
+     * Returns the connection timeout to be used when creaing an HttpClient with
+     * {@link io.github.jk_holmen.clients.BaseClient#BaseClient()
+     * BaseClient}.
+     * 
+     * @return the connection timeout time in seconds
+     */
+    public Long getConnectionTimeout() {
+        return Long.parseLong(get("connection.timeout"));
+    }
+
+    /**
+     * Returns the response timeout to be used when making HTTP requests with
+     * {@link io.github.jk_holmen.clients.BaseClient#get(String).
+     * 
+     * @return the response timeout in seconds
+     */
+    public Long getResponseTimeout() {
+        return Long.parseLong(get("response.timeout"));
     }
 }
