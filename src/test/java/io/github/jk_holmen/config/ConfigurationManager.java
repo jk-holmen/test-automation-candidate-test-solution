@@ -2,6 +2,7 @@ package io.github.jk_holmen.config;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.Properties;
 
 /**
@@ -80,7 +81,8 @@ public class ConfigurationManager {
     }
 
     /**
-     * Returns the dataset ID for the given dataset name ({@code dataset.id.<name>})
+     * Returns the dataset ID for the given dataset name
+     * ({@code dataset.id.<name>}).
      *
      * @param datasetName the dataset name from the property
      * @return the dataset ID
@@ -88,5 +90,16 @@ public class ConfigurationManager {
      */
     public String getDatasetId(String datasetName) {
         return get("dataset.id." + datasetName);
+    }
+
+    /**
+     * Returns the connection timeout to be used when creaing an HttpClient with
+     * {@link io.github.jk_holmen.clients.BaseClient#BaseClient(Duration)
+     * BaseClient}.
+     * 
+     * @return the connection timeout time in seconds
+     */
+    public Long getConnectionTimeout() {
+        return Long.parseLong(get("connection.timeout"));
     }
 }

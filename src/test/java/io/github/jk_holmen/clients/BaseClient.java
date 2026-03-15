@@ -5,6 +5,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.time.Duration;
+
 import io.github.jk_holmen.config.ConfigurationManager;
 
 /**
@@ -21,12 +23,14 @@ public class BaseClient {
     protected final HttpClient client;
     protected final String BASE_URL;
 
+    private final Long CONNECTION_TIMEOUT = ConfigurationManager.getInstance().getConnectionTimeout();
+
     /**
      * Creates a client with a default {@link HttpClient} and the base URL
      * from {@link ConfigurationManager#getBaseUrl()}.
      */
     public BaseClient() {
-        client = HttpClient.newBuilder().build();
+        client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(CONNECTION_TIMEOUT)).build();
         BASE_URL = ConfigurationManager.getInstance().getBaseUrl();
     }
 
